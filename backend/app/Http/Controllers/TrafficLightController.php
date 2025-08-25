@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 namespace App\Http\Controllers;
@@ -84,4 +82,3 @@ class TrafficLightController extends Controller
         //
     }
 }
->>>>>>> 2c774cd (init)

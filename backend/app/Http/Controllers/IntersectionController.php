@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 namespace App\Http\Controllers;
@@ -85,4 +83,3 @@ class IntersectionController extends Controller
         //
     }
 }
->>>>>>> 2c774cd (init)
