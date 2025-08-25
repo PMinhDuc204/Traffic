@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
-use App\Http\Requests\EventRequest;
+use App\Http\Requests\CreateEventRequest;
 
 class EventController extends Controller
 {
@@ -27,7 +27,7 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EventRequest $request)
+    public function store(CreateEventRequest $request)
     {
         //
         $event = new Event();

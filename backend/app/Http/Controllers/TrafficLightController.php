@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TrafficLight;
 use Illuminate\Http\Request;
+use App\Http\Requests\TrafficLightRequest;
 
 class TrafficLightController extends Controller
 {

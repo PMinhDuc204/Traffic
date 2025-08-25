@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Enums\EventType;
 use Illuminate\Validation\Rule;
 
-class EventRequest extends FormRequest
+class CreateEventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
