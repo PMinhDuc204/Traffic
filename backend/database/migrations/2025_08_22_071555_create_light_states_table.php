@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('light_states', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('intersection_id')->constrained('intersections');
             $table->foreignId('traffic_light_id')->constrained('traffic_lights');
             $table->enum('state', LightState::getValues());
             $table->dateTime(('start_time'))->nullable();

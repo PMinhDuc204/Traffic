@@ -10,6 +10,7 @@ $ php artisan migrate
 $ php artisan serve
 
 // run frontend
+
 $ cd frontend npm install
 
 $ npm run dev

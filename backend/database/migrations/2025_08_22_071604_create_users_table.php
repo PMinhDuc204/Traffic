@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('control_station_id')->nullable()->constrained('control_stations')->nullOnDelete();
+            $table->foreignId('control_station_id')->nullable()->constrained('control_stations');
             $table->string('user_name')->unique();
             $table->string('password');
             $table->enum('role', RoleUser::getValues())->default(RoleUser::USER);

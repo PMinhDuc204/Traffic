@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('location', 255);
-            $table->foreignId('control_station_id')->constrained('control_stations');
+            $table->foreignId('control_station_id')->nullable()->constrained('control_stations');
             $table->timestamps();
             $table->softDeletes();
         });

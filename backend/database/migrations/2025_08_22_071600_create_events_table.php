@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('intersection_id')->nullable()->constrained('intersections');
             $table->foreignId('traffic_light_id')->nullable()->constrained('traffic_lights');
+            $table->foreignId('light_state_id')->nullable()->constrained('light_states');
             $table->enum('event', EventType::getValues());
             $table->string('description', 1000)->nullable();
             $table->dateTime('event_time');
