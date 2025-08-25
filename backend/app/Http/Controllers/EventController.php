@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
@@ -26,9 +27,17 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         //
+        $event = new Event();
+        $event->intersection_id = $request->intersection_id;
+        $event->traffic_light_id = $request->traffic_light_id;
+        $event->light_state_id = $request->light_state_id;
+        $event->event = $request->event;
+        $event->description = $request->description;
+        $event->event_time = $request->event_time;
+        $event->save();
     }
 
     /**

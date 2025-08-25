@@ -4,15 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Intersection;
 use Illuminate\Http\Request;
+use App\Http\Requests\IntersectionRequest;
 
 class IntersectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(IntersectionRequest $request)
     {
         //
+        $intersections = Intersection::query();
+
+        $searchName = $request->input('name');
+        if ($searchName !== null && $searchName !== '') {
+            $intersections->where('name', 'LIKE', '%' . $searchName . '%');
+        }
+
+        $searchLocation = $request->input('location');
+        if ($searchLocation !== null && $searchLocation !== '') {
+            $intersections->where('location', 'LIKE', '%' . $searchLocation . '%');
+        }
+
+        $results = $intersections->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $results,
+            'message' => 'Intersections retrieved successfully',
+        ], 200);
     }
 
     /**

@@ -12,7 +12,26 @@ class TrafficLightController extends Controller
      */
     public function index()
     {
-        //
+        $trafficLights = TrafficLight::query();
+
+        $searchName = request()->input('name');
+        if ($searchName !== null && $searchName !== '') {
+            $trafficLights->where('name', 'LIKE', '%' . $searchName . '%');
+        }
+
+        $searchLocation = request()->input('location');
+        if ($searchLocation !== null && $searchLocation !== '') {
+            $trafficLights->where('location', 'LIKE', '%' . $searchLocation . '%');
+        }
+
+        $results = $trafficLights->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $results,
+            'message' => 'Traffic lights retrieved successfully',
+        ], 200);
+
     }
 
     /**

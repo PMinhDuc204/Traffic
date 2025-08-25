@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('traffic_lights', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('intersection_id')->constrained('intersections')->onDelete('cascade');
+            $table->foreignId('intersection_id')->constrained('intersections');
             $table->enum('direction', Direction::getValues());
             $table->timestamps();
             $table->softDeletes();
