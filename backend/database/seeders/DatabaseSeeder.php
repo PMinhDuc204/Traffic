@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             IntersectionSeeder::class,
-            LightStateSeeder::class,
-            TrafficLightSeeder::class
+            TrafficLightSeeder::class,
+            LightStateSeeder::class
         ]);
     }
 }

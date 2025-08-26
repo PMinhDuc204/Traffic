@@ -12,6 +12,7 @@ class IntersectionSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('intersections')->delete();
         DB::table('intersections')->insert([
             [
                 'name' => 'Ngã tư Sở',

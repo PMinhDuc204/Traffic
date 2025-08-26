@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DetailTrafficLightRequest;
 use App\Models\TrafficLight;
 use Illuminate\Http\Request;
 use App\Http\Requests\TrafficLightRequest;
@@ -11,18 +12,23 @@ class TrafficLightController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(TrafficLightRequest $request)
     {
-        $trafficLights = TrafficLight::query();
+        $trafficLights = TrafficLight::query()
+        ->join('intersections', 'traffic_lights.intersection_id', '=', 'intersections.id')
+        ->select(
+            'traffic_lights.*',
+            'intersections.name as intersection_name'
+        );
 
-        $searchName = request()->input('name');
-        if ($searchName !== null && $searchName !== '') {
-            $trafficLights->where('name', 'LIKE', '%' . $searchName . '%');
+        $searchIntersectionName = $request->input('search_intersection_name');
+        if ($searchIntersectionName !== null && $searchIntersectionName !== '') {
+            $trafficLights->where('intersections.name', 'LIKE', '%' . $searchIntersectionName . '%');
         }
 
-        $searchLocation = request()->input('location');
-        if ($searchLocation !== null && $searchLocation !== '') {
-            $trafficLights->where('location', 'LIKE', '%' . $searchLocation . '%');
+        $searchDirection = $request->input('search_direction');
+        if ($searchDirection !== null && $searchDirection !== '') {
+            $trafficLights->where('traffic_lights.direction', 'LIKE', '%' . $searchDirection . '%');
         }
 
         $results = $trafficLights->get();
@@ -32,7 +38,6 @@ class TrafficLightController extends Controller
             'data' => $results,
             'message' => 'Traffic lights retrieved successfully',
         ], 200);
-
     }
 
     /**
@@ -54,9 +59,15 @@ class TrafficLightController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TrafficLight $trafficLight)
+    public function show(DetailTrafficLightRequest $request)
     {
-        //
+        $trafficLight = TrafficLight::where('id', $request->id)->first();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $trafficLight,
+            'message' => 'Traffic light retrieved successfully',
+        ], 200);
     }
 
     /**

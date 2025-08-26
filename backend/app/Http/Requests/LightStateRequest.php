@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Enums\Direction;
+use App\Enums\LightState;
 
-class TrafficLightRequest extends FormRequest
+class LightStateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,18 +25,21 @@ class TrafficLightRequest extends FormRequest
     {
         return [
             'intersection_id' => ['required', 'exists:intersections,id'],
-            'direction' => ['required', Rule::in(Direction::getValues())],
+            'traffic_light_id' => ['required', 'exists:traffic_lights,id'],
+            'state' => ['required', Rule::in(LightState::getValues())],
+            'start_time' => 'required|date_format:Y/m/d H:i:s',
+            'end_time' => 'required|date_format:Y/m/d H:i:s',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'intersection_id.required' => 'The intersection id is required.',
-            'intersection_id.exists' => 'The intersection id does not exist.',
-            'direction.required' => 'The direction is required.',
-            'direction.string' => 'The direction must be a string.',
-            'direction.max' => 'The direction must not be greater than 255 characters.',
+            'intersection_id.required' => 'Intersection ID is required.',
+            'traffic_light_id.required' => 'Traffic light ID is required.',
+            'state.required' => 'State is required.',
+            'start_time.required' => 'Start time is required.',
+            'end_time.required' => 'End time is required.',
         ];
     }
 }
