@@ -2,7 +2,7 @@
   <div class="containter-fluid">
     <div
       class="row text-white"
-      style="background-color: #0c713d; padding: 1rem"
+      style="background-color: #0EC362EA; padding: 1rem"
     >
       <div
         class="col-1 d-flex d-sm-none align-items-center justify-content-center"
@@ -63,9 +63,9 @@ export default defineComponent({
     const visible = ref(false);
     const visible_user = ref(false);
 
-    const showDrawer = () => {
+    function showDrawer() {
       visible.value = true;
-    };
+    }
 
     const showDrawerUser = () => {
       visible_user.value = true;
