@@ -27,6 +27,8 @@ $ php artisan serve
 
 # run frontend
 
-$ cd frontend npm install
+$ cd frontend 
+
+$ npm install or yarn install
 
 $ npm run dev
