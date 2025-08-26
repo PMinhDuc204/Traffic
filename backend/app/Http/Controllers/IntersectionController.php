@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateIntersectionRequest;
 use App\Models\Intersection;
 use Illuminate\Http\Request;
 use App\Http\Requests\FindIntersectionRequest;
@@ -46,9 +47,15 @@ class IntersectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateIntersectionRequest $request)
     {
-        //
+        $intersection = Intersection::create($request->validated());
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $intersection,
+            'message' => 'Intersection created successfully',
+        ], 201);
     }
 
     /**

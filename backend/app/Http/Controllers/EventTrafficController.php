@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateEventRequest;
+use Illuminate\Http\JsonResponse;
 
-class EventController extends Controller
+class EventTrafficController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,17 +28,14 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateEventRequest $request)
+    public function store(CreateEventRequest $request): JsonResponse
     {
-        //
-        $event = new Event();
-        $event->intersection_id = $request->intersection_id;
-        $event->traffic_light_id = $request->traffic_light_id;
-        $event->light_state_id = $request->light_state_id;
-        $event->event = $request->event;
-        $event->description = $request->description;
-        $event->event_time = $request->event_time;
-        $event->save();
+        $event = Event::create($request->validated());
+
+        return response()->json([
+            'message' => 'Event created successfully',
+            'data' => $event
+        ], 201);
     }
 
     /**

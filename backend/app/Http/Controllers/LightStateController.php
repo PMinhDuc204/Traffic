@@ -21,7 +21,7 @@ class LightStateController extends Controller
         ->select(
             'light_states.*',
             'intersections.name as intersection_name',
-            'traffic_lights.name as traffic_light_name'
+            'traffic_lights.direction as traffic_light_direction'
         );
 
         $searchIntersectionName = $request->input('search_intersection_name');

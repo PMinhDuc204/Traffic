@@ -4,7 +4,9 @@
 * php version  > 8.2 
 
 # run backend
-$ cd backend composer install
+$ cd backend 
+
+$ composer install
 
 $ cp .env.example .env
 
