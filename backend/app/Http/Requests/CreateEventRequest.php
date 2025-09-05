@@ -30,7 +30,6 @@ class CreateEventRequest extends FormRequest
             'light_state_id' => 'required|exists:light_states,id',
             'event' => ['required', Rule::in(EventType::getValues())],
             'description' => 'required|string|max:255',
-            'event_time' => 'required|date_format:Y/m/d H:i:s',
         ];
     }
 }

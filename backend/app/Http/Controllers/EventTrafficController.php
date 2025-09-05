@@ -30,11 +30,19 @@ class EventTrafficController extends Controller
      */
     public function store(CreateEventRequest $request): JsonResponse
     {
-        $event = Event::create($request->validated());
+        $event = new Event();
+        $event->intersection_id = $request->intersection_id;
+        $event->traffic_light_id = $request->traffic_light_id;
+        $event->light_state_id = $request->light_state_id;
+        $event->event = $request->event;
+        $event->description = $request->description;
+        $event->event_time = now();
+        $event->save();
 
         return response()->json([
+            'success' => true,
+            // 'data' => $event,
             'message' => 'Event created successfully',
-            'data' => $event
         ], 201);
     }
 
